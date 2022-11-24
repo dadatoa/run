@@ -1,8 +1,5 @@
 ---
-import '../styles/global.css';
-
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "A propos";
 
@@ -23,58 +20,40 @@ const skillColor = "blue";
 const fontWeight = "bold";
 const textCase = "uppercase";
 ---
+<BaseLayout pageTitle={pageTitle}>
+	<h2>et de celui de mon site Astro</h2>
+	<p>Je travaille sur le tuto d'introduction d'Astro. C'est la deuxième page de mon site web, et la première que j'écris moi-même</p>
+	<p>Je mettrai à jour le site au fur et à mesure que j'avancerai dans le tuto, donc sureveille ce qui se passe et comment se passe mon aventure!</p>
+	
+	<p>Here are a few facts about me:</p>
+	<ul>
+	  <li>My name is {identity.firstName}.</li>
+	  <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+	  {identity.hobbies.length >= 2 && 
+		<li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+	  } 
+	</ul>
+	<p>My skills are:</p>
+	<ul>
+	  {skills.map((skill) => <li class="skill">{skill}</li>)}
+	</ul>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-        <Header />
+	{happy && <p>I am happy to be learning Astro!</p>}
 
-		<h1>{pageTitle}</h1>
-        <h2>et de celui de mon site Astro</h2>
-        <p>Je travaille sur le tuto d'introduction d'Astro. C'est la deuxième page de mon site web, et la première que j'écris moi-même</p>
-        <p>Je mettrai à jour le site au fur et à mesure que j'avancerai dans le tuto, donc sureveille ce qui se passe et comment se passe mon aventure!</p>
-		
-		<p>Here are a few facts about me:</p>
-		<ul>
-		  <li>My name is {identity.firstName}.</li>
-		  <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-		  {identity.hobbies.length >= 2 && 
-		    <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-		  } 
-		</ul>
-		<p>My skills are:</p>
-		<ul>
-		  {skills.map((skill) => <li class="skill">{skill}</li>)}
-		</ul>
+	{finished && <p>I finished this tutorial!</p>}
 
-		{happy && <p>I am happy to be learning Astro!</p>}
+	{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 
-		{finished && <p>I finished this tutorial!</p>}
+</BaseLayout>
 
-		{goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-
-		<Footer />
-
-		<script>
-			import "../scripts/menu.js";
-		</script>
-
-	</body>
-	<style define:vars={{skillColor, fontWeight, textCase}}>
-	h1 {
-	  color: purple;
-	  font-size: 4rem;
-	}
-	.skill {
-		color: var(--skillColor);
-		font-weight: var(--fontWeight);
- 	   	text-transform: var(--textCase);
-	}
-	</style>
-</html>
+<style define:vars={{skillColor, fontWeight, textCase}}>
+h1 {
+  color: purple;
+  font-size: 4rem;
+}
+.skill {
+	color: var(--skillColor);
+	font-weight: var(--fontWeight);
+		text-transform: var(--textCase);
+}
+</style>
