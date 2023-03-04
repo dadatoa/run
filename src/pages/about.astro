@@ -1,4 +1,12 @@
 ---
+const pageTitle = "About Me";
+const identity = {
+  firstName: "dadato",
+  country: "Lichtenstein",
+  occupation: "technical writer",
+  hobbies: ["photography", "cinema", "run"],
+};
+const skills = ["css", "javascript", "Astro dev"];
 ---
 
 <html lang="en">
@@ -18,8 +26,13 @@
       <li><a href="/blog">blog</a></li>
     </ul>
     
-    <h1>mon projet astro</h1>
-
+    <h1>{pageTitle}</h1>
+    <h2>de mon super projet Astro</h2>
+    <p>my name is {identity.firstName}</p>
+    <p>my skills are:</p>
+    <ul>
+    {skills.map((skill) => <li>{skill}</li>) }
+    </ul>
   </body>
 
   </html>
