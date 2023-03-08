@@ -1,5 +1,10 @@
 ---
+// recupére toutes les collections de content (astro v2)
+import { getCollection } from "astro:content";
+// 
+const blogPosts = await getCollection('blog');
 ---
+
 
 <html lang="en">
   <head>
@@ -12,14 +17,12 @@
 
   <body>
 
-    <ul>
-      <li><a href="/">home</a></li>
-      <li><a href="/about">about</a></li>
-      <li><a href="/blog">blog</a></li>
-    </ul>
-    
     <h1>mon projet astro</h1>
-
+    {
+      blogPosts.map(post => (
+        <h2>{post.data.title}</h2>
+      ))
+    }
   </body>
 
   </html>
